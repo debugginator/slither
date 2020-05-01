@@ -17,7 +17,7 @@ class FrontRunning(AbstractDetector):
     ARGUMENT = 'front-running'  # launch only this detector with slither /path/to/contract/folder --detect front-running
     HELP = 'Function which send ether to the sender without accessing contract state'
     IMPACT = DetectorClassification.HIGH
-    CONFIDENCE = DetectorClassification.HIGH
+    CONFIDENCE = DetectorClassification.LOW
 
     WIKI = 'https://github.com/trailofbits/slither/wiki/TODO'
     WIKI_TITLE = 'TODO'
