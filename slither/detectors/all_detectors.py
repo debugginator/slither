@@ -6,6 +6,7 @@ from .attributes.constant_pragma import ConstantPragma
 from .attributes.incorrect_solc import IncorrectSolc
 from .attributes.locked_ether import LockedEther
 from .functions.arbitrary_send import ArbitrarySend
+from .functions.front_running import FrontRunning
 from .functions.suicidal import Suicidal
 #from .functions.complex_function import ComplexFunction
 from .reentrancy.reentrancy_benign import ReentrancyBenign
