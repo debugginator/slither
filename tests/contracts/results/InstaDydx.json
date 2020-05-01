@@ -1,7 +1,7 @@
 [
   {
     "check": "front-running",
-    "confidence": "High",
+    "confidence": "Low",
     "description": "DydxResolver.payback(uint256,address,uint256) (tests/contracts/InstaDydx.sol#203-217) sends eth to sender without checking state\n\tDangerous calls:\n\t\t- msg.sender.transfer(address(this).balance) (tests/contracts/InstaDydx.sol#210)\n",
     "elements": [
       {
@@ -293,7 +293,7 @@
   },
   {
     "check": "front-running",
-    "confidence": "High",
+    "confidence": "Low",
     "description": "DydxResolver.withdraw(uint256,address,uint256) (tests/contracts/InstaDydx.sol#222-239) sends eth to sender without checking state\n\tDangerous calls:\n\t\t- msg.sender.transfer(toWithdraw) (tests/contracts/InstaDydx.sol#234)\n",
     "elements": [
       {
@@ -591,7 +591,7 @@
   },
   {
     "check": "front-running",
-    "confidence": "High",
+    "confidence": "Low",
     "description": "DydxResolver.borrow(uint256,address,uint256) (tests/contracts/InstaDydx.sol#244-254) sends eth to sender without checking state\n\tDangerous calls:\n\t\t- msg.sender.transfer(tokenAmt) (tests/contracts/InstaDydx.sol#249)\n",
     "elements": [
       {
