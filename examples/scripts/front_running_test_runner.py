@@ -76,4 +76,4 @@ for filename in os.listdir(directory):
 # Print out the statistics
 logger.info("Results for {} contracts".format(contract_processed))
 for vulnerability in statistics:
-    logger.info("Found {} contracts vulnerable to {}".format(statistics[vulnerability], vulnerability))
+    logger.info("Found {} cases vulnerable to {}".format(statistics[vulnerability], vulnerability))
