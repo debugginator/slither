@@ -54,6 +54,10 @@ for filename in os.listdir(directory):
 
             detector_results = [item for sublist in detector_results for item in sublist]  # flatten
 
+            # Skip writing to file if there are no vulnerabilities detected
+            if len(detector_results) == 0:
+                continue
+
             # make output pretty-printed
             jsonResult = json.dumps(detector_results, indent=2, sort_keys=True)
             outputFilePath = os.path.join(directory + "/results/", filename[:-4] + ".json")
