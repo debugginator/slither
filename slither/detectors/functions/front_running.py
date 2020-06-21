@@ -56,7 +56,7 @@ class FrontRunning(AbstractDetector):
     Returns:
       list(Node)
     """
-    if func.is_protected() or len(func.state_variables_read) > 0:
+    if func.visibility in ['private', 'internal'] or len(func.state_variables_read) > 0:
       return []
 
     ret = []

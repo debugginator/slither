@@ -11,7 +11,7 @@ contract Test {
         return _unsafeWithdraw(amount);
     }
 
-    function _unsafeWithdraw(uint amount) public returns(bool){
+    function _unsafeWithdraw(uint amount) private returns(bool){
         if (msg.sender.send(amount)) {
             return true;
         } else {
@@ -23,7 +23,7 @@ contract Test {
         return _unsafeWithdraw2(amount);
     }
 
-    function _unsafeWithdraw2(uint amount) public{
+    function _unsafeWithdraw2(uint amount) private{
         msg.sender.transfer(amount);
     }
 
