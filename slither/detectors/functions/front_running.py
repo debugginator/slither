@@ -30,9 +30,21 @@ class FrontRunning(AbstractDetector):
   IMPACT = DetectorClassification.HIGH
   CONFIDENCE = DetectorClassification.LOW
 
-  WIKI = 'https://github.com/trailofbits/slither/wiki/Detector-Documentation'
+  WIKI = 'https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-as-external'
+
   WIKI_TITLE = 'Front running'
   WIKI_DESCRIPTION = 'Detection of front running vulnerability'
+  WIKI_EXPLOIT_SCENARIO = '''
+```solidity
+    function _unsafeWithdraw(uint amount) public returns(bool){
+        if (msg.sender.send(amount)) {
+            return true;
+        } else {
+            revert();
+        }
+    }
+```
+  Somebody can see the call to withdraw in the mempool and insert his own call before it.'''
   WIKI_RECOMMENDATION = 'Protect your withdraw function from being exploited by implementing a commit&reveal scheme'
 
   @staticmethod
