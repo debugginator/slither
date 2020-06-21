@@ -20,6 +20,7 @@ from slither.slithir.operations import (HighLevelCall, Index, LowLevelCall,
 
 # TODO check if external function called that prevents front running (dydx case)
 # TODO check if Transaction Order Affects Ether Amount ??
+# TODO transitive currently supports only 1 level deep
 class FrontRunning(AbstractDetector):
   """
   Detect functions vulnerable to front-running
@@ -56,7 +57,7 @@ class FrontRunning(AbstractDetector):
     Returns:
       list(Node)
     """
-    if func.visibility in ['private', 'internal'] or len(func.state_variables_read) > 0:
+    if len(func.state_variables_read) > 0:
       return []
 
     ret = []
@@ -77,12 +78,19 @@ class FrontRunning(AbstractDetector):
       list((Function), (list (Node)))
     """
     ret = []
+
     for f in [f
               for f
               in contract.functions
               # only functions declared by contract
               if f.contract_declarer == contract]:
+      if f.visibility in ['private', 'internal']:
+        continue
       nodes = self.front_running(f)
+
+      internal_fn_calls = [call for call in f.all_internal_calls() if call in contract.functions]
+      for internal_fn in internal_fn_calls:
+        nodes += self.front_running(internal_fn)
       if nodes:
         ret.append((f, nodes))
     return ret
