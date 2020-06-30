@@ -88,7 +88,10 @@ class FrontRunning(AbstractDetector):
         continue
       nodes = self.front_running(f)
 
-      internal_fn_calls = [call for call in f.all_internal_calls() if call in contract.functions]
+      internal_fn_calls = [call
+                           for call
+                           in f.all_internal_calls()
+                           if call in contract.functions]
       for internal_fn in internal_fn_calls:
         nodes += self.front_running(internal_fn)
       if nodes:
