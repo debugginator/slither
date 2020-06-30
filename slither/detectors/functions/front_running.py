@@ -10,17 +10,13 @@ from slither.slithir.operations import (HighLevelCall, Index, LowLevelCall,
 
 
 # TODO check if state variables accessed are relevant to the sending
-# 1. require or if statement wrapping the sending
-# White flag transactions which do smth like require(msg.sender === anything) because only one address can withdraw
-# Still red flag tx which have a check like if (calculatedHash == hashPuzzle)
 
 # TODO check if contract implements submarine sends
 # https://github.com/lorenzb/libsubmarine/blob/master/contracts/examples/erc721_auction/ERC721AuctionSubmarine.sol
 
-
 # TODO check if external function called that prevents front running (dydx case)
 # TODO check if Transaction Order Affects Ether Amount ??
-# TODO transitive currently supports only 1 level deep
+
 class FrontRunning(AbstractDetector):
   """
   Detect functions vulnerable to front-running
