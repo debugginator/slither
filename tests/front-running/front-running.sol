@@ -15,15 +15,15 @@ contract Test {
         }
     }
 
-function unsafeCollect(uint data) public returns(bool){
-    bytes32 hash = 0xcea2260e17a842c8ccc2d71453ced6ba2f0dafcd71427251fca35de9198706bc;
-    require(keccak256(abi.encodePacked(data)) == hash);
-    if (msg.sender.send(address(this).balance)) {
-        return true;
-    } else {
-        revert();
+    function unsafeCollectPrize(uint data) public returns(bool){
+        bytes32 hash = 0xcea2260e17a842c8ccc2d71453ced6ba2f0dafcd71427251fca35de9198706bc;
+        require(keccak256(abi.encodePacked(data)) == hash);
+        if (msg.sender.send(address(this).balance)) {
+            return true;
+        } else {
+            revert();
+        }
     }
-}
 
 
     function unsafeWithdraw2(uint amount) public{
