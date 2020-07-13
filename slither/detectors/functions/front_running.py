@@ -83,6 +83,8 @@ class FrontRunning(AbstractDetector):
       if f.visibility in ['private', 'internal']:
         continue
       nodes = self.front_running(f)
+      if len(f.state_variables_read) > 0:
+        continue
 
       internal_fn_calls = [call
                            for call
